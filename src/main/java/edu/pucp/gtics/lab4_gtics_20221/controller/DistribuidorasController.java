@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+@Controller
 @RequestMapping("/distribuidoras")
 
 public class DistribuidorasController {
@@ -26,31 +27,31 @@ public class DistribuidorasController {
     @Autowired
     PaisesRepository paisesRepository;
 
-    @GetMapping(value = {"/lista"})
-    public String listaDistribuidoras ( ){
-
-    }
-
-
-    public String editarDistribuidoras(){
-
-    }
-
-    public String nuevaDistribuidora( ){
-
-    }
-
-    public String guardarDistribuidora( ){
-
-    }
-
-    @GetMapping("/borrar")
-    public String borrarDistribuidora(@RequestParam("id") int id){
-        Optional<Distribuidoras> opt = distribuidorasRepository.findById(id);
-        if (opt.isPresent()) {
-            distribuidorasRepository.deleteById(id);
-        }
-        return "redirect:/distribuidoras/lista";
-    }
+//    @GetMapping(value = {"/lista"})
+//    public String listaDistribuidoras ( ){
+//
+//    }
+//
+//
+//    public String editarDistribuidoras(){
+//
+//    }
+//
+//    public String nuevaDistribuidora( ){
+//
+//    }
+//
+//    public String guardarDistribuidora( ){
+//
+//    }
+//
+//    @GetMapping("/borrar")
+//    public String borrarDistribuidora(@RequestParam("id") int id){
+//        Optional<Distribuidoras> opt = distribuidorasRepository.findById(id);
+//        if (opt.isPresent()) {
+//            distribuidorasRepository.deleteById(id);
+//        }
+//        return "redirect:/distribuidoras/lista";
+//    }
 
 }

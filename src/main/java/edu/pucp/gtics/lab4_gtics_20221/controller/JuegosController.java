@@ -14,8 +14,8 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-
-
+@Controller
+@RequestMapping("juegos")
 public class JuegosController {
 
     @Autowired
@@ -33,34 +33,34 @@ public class JuegosController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping(value = {"", "/","/juegos/lista"})
-    public String listaJuegos (){
-
-    }
-
-    public String vistaJuegos ( ){
-
-    }
-
-    public String nuevoJuegos( ){
-
-    }
-
-    public String editarJuegos( ){
-
-    }
-
-    public String guardarJuegos( ){
-
-    }
-
-    @GetMapping("/juegos/borrar")
-    public String borrarDistribuidora(@RequestParam("id") int id){
-        Optional<Juegos> opt = juegosRepository.findById(id);
-        if (opt.isPresent()) {
-            juegosRepository.deleteById(id);
-        }
-        return "redirect:/juegos/lista";
-    }
+//    @GetMapping(value = {"", "/","/juegos/lista"})
+//    public String listaJuegos (){
+//
+//    }
+//
+//    public String vistaJuegos ( ){
+//
+//    }
+//
+//    public String nuevoJuegos( ){
+//
+//    }
+//
+//    public String editarJuegos( ){
+//
+//    }
+//
+//    public String guardarJuegos( ){
+//
+//    }
+//
+//    @GetMapping("/juegos/borrar")
+//    public String borrarDistribuidora(@RequestParam("id") int id){
+//        Optional<Juegos> opt = juegosRepository.findById(id);
+//        if (opt.isPresent()) {
+//            juegosRepository.deleteById(id);
+//        }
+//        return "redirect:/juegos/lista";
+//    }
 
 }

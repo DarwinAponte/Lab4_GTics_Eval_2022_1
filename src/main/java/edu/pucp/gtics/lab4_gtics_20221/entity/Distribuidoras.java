@@ -1,28 +1,35 @@
 package edu.pucp.gtics.lab4_gtics_20221.entity;
 
+import org.hibernate.validator.constraints.URL;
+
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "distribuidoras")
 public class Distribuidoras {
-
+    @Id
     private int iddistribuidora;
 
+    @Size(min = 3, max = 50)
     private String nombre;
 
+    @Size(min = 3, max = 198)
     private String descripcion;
 
+    @URL
+    @Size(min = 3, max = 198)
     private String web;
 
+    @Digits(integer = 10, fraction = 0)
+    @Max(value = 2100)
+    @Min(value = 1800)
     private int fundacion = 1870;
 
     @ManyToOne
     @JoinColumn(name = "idsede")
-
+    @NotBlank
     private Paises pais;
 
     public int getIddistribuidora() {
