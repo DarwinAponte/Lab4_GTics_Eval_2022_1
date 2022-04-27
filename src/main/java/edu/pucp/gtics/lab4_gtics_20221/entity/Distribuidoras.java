@@ -9,7 +9,9 @@ import javax.validation.constraints.*;
 @Entity
 @Table(name = "distribuidoras")
 public class Distribuidoras {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int iddistribuidora;
 
     @Size(min = 3, max = 50)
