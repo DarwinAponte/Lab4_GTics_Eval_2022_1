@@ -22,7 +22,6 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/distribuidoras")
-
 public class DistribuidorasController {
 
     @Autowired
@@ -37,28 +36,59 @@ public class DistribuidorasController {
         return "distribuidoras/lista";
     }
 
-    @GetMapping("newFrm")
-    public String editarDistribuidoras (@ModelAttribute("distribuidora") Distribuidoras distribuidoras, Model model){
 
-        model.addAttribute("listaPaises", paisesRepository.findAll());
-        return "distribuidoras/editarFrm";
+//    public String editarDistribuidoras() {
+//
+//    }
+//
+//    public String nuevaDistribuidora() {
+//
+//    }
+
+    @PostMapping("/guardar")
+    public String guardarDistribuidora(@ModelAttribute("distribuidora") @Valid Distribuidoras distribuidoras, BindingResult bindingResult,
+                                       RedirectAttributes attr, Model model
+//                                       @RequestParam(name = "fechaContrato", required = false) String fechaContrato,
+    ) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("listaPaises", paisesRepository.findAll());
+            return "distribuidoras/editarFrm";
+        } else {
+            if (distribuidoras.getIddistribuidora() == 0) {
+                attr.addFlashAttribute("msg", "Distribuidora creada exitosamente");
+                distribuidorasRepository.save(distribuidoras);
+                return "redirect:/gameshop3/distribuidoras";
+            } else {
+                distribuidorasRepository.save(distribuidoras);
+                attr.addFlashAttribute("msg", "Distribuidora actualizada exitosamente");
+                return "redirect:/gameshop3/distribuidoras";
+            }
+        }
     }
 
-//    public String nuevaDistribuidora( ){
-//
-//    }
-//
-//    public String guardarDistribuidora( ){
-//
-//    }
-//
-//    @GetMapping("/borrar")
-//    public String borrarDistribuidora(@RequestParam("id") int id){
-//        Optional<Distribuidoras> opt = distribuidorasRepository.findById(id);
-//        if (opt.isPresent()) {
-//            distribuidorasRepository.deleteById(id);
-//        }
-//        return "redirect:/distribuidoras/lista";
-//    }
+    @GetMapping("/editar")
+    public String  editarDistribuidoras(Model model, @RequestParam("id") int id,
+                                 @ModelAttribute("distribuidora") Distribuidoras distribuidoras) {
+
+        Optional<Distribuidoras> optionalDistrib = distribuidorasRepository.findById(id);
+
+        if (optionalDistrib.isPresent()) {
+            distribuidoras = optionalDistrib.get();
+            model.addAttribute("employee", distribuidoras);
+            model.addAttribute("listaPaises", paisesRepository.findAll());
+            return "distribuidoras/editarFrm";
+        } else {
+            return "redirect:/gameshop3/distribuidoras";
+        }
+    }
+
+    @GetMapping("/borrar")
+    public String borrarDistribuidora(@RequestParam("id") int id) {
+        Optional<Distribuidoras> opt = distribuidorasRepository.findById(id);
+        if (opt.isPresent()) {
+            distribuidorasRepository.deleteById(id);
+        }
+        return "redirect:/gameshop3/distribuidoras";
+    }
 
 }
