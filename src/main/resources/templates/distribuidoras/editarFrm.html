@@ -1,62 +1,64 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: head(title='Gameshop3 - Bienvenido')"></head>
-<body>
-<div class='container'>
-    <div th:replace="fragments/header.html :: header(option='Distribuidoras')"></div>
+    <head th:replace="fragments/base.html :: head(title='Gameshop3 - Bienvenido')"></head>
+    <body>
+        <div class='container'>
+            <div th:replace="fragments/header.html :: header(option='Distribuidoras')"></div>
 
-    <div id="content">
-        <main>
-            <!-- Contenido -->
-        <div class="page-header text-center">
-            <h2 th:text="${'Crear Función'}"></h2>
-        </div>
-        <div class="container-fluid">
-                <form method="POST" class="row g-3" th:object="${distribuidora}">
-                    <div class="form-group">
-                        <label class="form-label">Nombre</label>
-                        <input type="text" class="form-control" th:field="*{nombre}" id="nombre">
-                        <div class="text-danger" th:if="${#fields.hasErrors('nombre')}"
-                             th:errors="*{nombre}"></div>
+            <div id="content">
+                <main>
+                    <!-- Contenido -->
+                    <div class="page-header text-center">
+                        <h2 th:text="|${distribuidora.iddistribuidora == 0 ? 'Nuevo' : 'Editar'} Distribuidora|"></h2>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Descripción</label>
-                        <input type="text" class="form-control" th:field="*{descripcion}" id="descripcion">
-                        <div class="text-danger" th:if="${#fields.hasErrors('descripcion')}"
-                             th:errors="*{descripcion}"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">URL Web</label>
-                        <input type="text" class="form-control" th:field="*{web}" id="web">
-                        <div class="text-danger" th:if="${#fields.hasErrors('descripcion')}"
-                             th:errors="*{web}"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Fundación</label>
-                        <input type="text" class="form-control" th:field="*{fundacion}" id="fundacion">
-                        <div class="text-danger" th:if="${#fields.hasErrors('descripcion')}"
-                             th:errors="*{fundacion}"></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Sedes</label>
-                        <select class="form-select" th:field="*{pais}">
-                            <option th:each="pais : ${listaPaises}"
-                                    th:text="|${pais.getNombre()}|"
-                                    th:value="${pais.getIdpais()}"></option>
-                        </select>
+                    <div class="container-fluid">
+                        <form method="post" class="row g-3" th:object="${distribuidora}"
+                              th:action="@{/distribuidoras/guardar}">
+                            <input type="hidden" th:field="*{iddistribuidora}">
+                            <div class="form-group">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" th:field="*{nombre}" id="nombre">
+                                <div class="text-danger" th:if="${#fields.hasErrors('nombre')}"
+                                     th:errors="*{nombre}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Descripción</label>
+                                <input type="text" class="form-control" th:field="*{descripcion}" id="descripcion">
+                                <div class="text-danger" th:if="${#fields.hasErrors('descripcion')}"
+                                     th:errors="*{descripcion}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">URL Web</label>
+                                <input type="text" class="form-control" th:field="*{web}" id="web">
+                                <div class="text-danger" th:if="${#fields.hasErrors('web')}"
+                                     th:errors="*{web}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Fundación</label>
+                                <input type="text" class="form-control" th:field="*{fundacion}" id="fundacion">
+                                <div class="text-danger" th:if="${#fields.hasErrors('fundacion')}"
+                                     th:errors="*{fundacion}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Sedes</label>
+                                <select class="form-select" th:field="*{pais}">
+                                    <option th:each="p : ${listaPaises}"
+                                            th:text="|${p.getNombre()}|"
+                                            th:value="${p.getIdpais()}"></option>
+                                </select>
+                            </div>
 
+                            <div class="form-group">
+                                <a th:href="@{/distribuidoras/lista}" class="btn btn-danger">Cancelar</a>
+                                <button type="submit" class="btn btn-primary"
+                                        th:text="${distribuidora.iddistribuidora != 0 ? 'Actualizar' : 'Registrar'}"></button>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="form-group">
-                        <a th:href="@{/distribuidoras/lista}" class="btn btn-danger">Cancelar</a>
-                        <button type="submit" class="btn btn-primary" th:text="Boton ---">Reg/act</button>
-                    </div>
-                </form>
-        </div>
-        </main>
-    </div>
+                </main>
+            </div>
             <!-- /Contenido -->
-    <div th:replace="fragments/footer.html :: footer(year='2022')"></div>
-</div>
-<div th:replace="fragments/base.html :: jsScripts"></div>
-</body>
+            <div th:replace="fragments/footer.html :: footer(year='2022')"></div>
+        </div>
+        <div th:replace="fragments/base.html :: jsScripts"></div>
+    </body>
 </html>

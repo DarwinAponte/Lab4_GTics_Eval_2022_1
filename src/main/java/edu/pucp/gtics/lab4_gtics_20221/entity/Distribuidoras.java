@@ -12,7 +12,7 @@ public class Distribuidoras {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int iddistribuidora;
+    private Integer iddistribuidora;
 
     @Size(min = 3, max = 50)
     private String nombre;
@@ -31,14 +31,13 @@ public class Distribuidoras {
 
     @ManyToOne
     @JoinColumn(name = "idsede")
-    @NotBlank
     private Paises pais;
 
-    public int getIddistribuidora() {
+    public Integer getIddistribuidora() {
         return iddistribuidora;
     }
 
-    public void setIddistribuidora(int iddistribuidora) {
+    public void setIddistribuidora(Integer iddistribuidora) {
         this.iddistribuidora = iddistribuidora;
     }
 
