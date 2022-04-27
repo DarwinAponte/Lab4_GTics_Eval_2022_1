@@ -15,7 +15,8 @@ import java.util.List;
 import java.util.Optional;
 
 
-
+@Controller
+@RequestMapping("/juegos")
 public class JuegosController {
 
     @Autowired
@@ -35,26 +36,29 @@ public class JuegosController {
 
     @GetMapping(value = {"", "/","/juegos/lista"})
     public String listaJuegos (){
-
+        return "juegos/editarFrm";
     }
 
     public String vistaJuegos ( ){
-
+        return "juegos/editarFrm";
     }
 
-    public String nuevoJuegos( ){
+    @GetMapping("/nuevo")
+    public String nuevoJuegos(){
 
+        return "juegos/editarFrm";
     }
 
-    public String editarJuegos( ){
-
+    public String editarJuegos( @ModelAttribute("juegos") Juegos juegos,Model model,@RequestParam("id") int id){
+        Optional<Juegos> optionalJuegos=juegosRepository.findById(id);
+        return "juegos/editarFrm";
     }
 
     public String guardarJuegos( ){
-
+        return "juegos/editarFrm";
     }
 
-    @GetMapping("/juegos/borrar")
+    @GetMapping("/borrar")
     public String borrarDistribuidora(@RequestParam("id") int id){
         Optional<Juegos> opt = juegosRepository.findById(id);
         if (opt.isPresent()) {

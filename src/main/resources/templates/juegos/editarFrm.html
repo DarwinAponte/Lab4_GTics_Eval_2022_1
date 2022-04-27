@@ -8,33 +8,48 @@
         <main>
             <!-- Contenido -->
         <div class="page-header text-center">
-            <h2 th:text=""></h2>
+            <h2 th:text="${employees.id == null? 'Nuevo Juego' : 'Editar Juego'}">Nuevo Empleado</h2>
         </div>
         <div class="container-fluid">
-                <form method="POST" class="row g-3" >
+                <form method="POST" class="row g-3" th:action="@{'/juegos/guardar'}">
                     <div class="form-group">
-                        <label>Nombre</label>
-
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" id="nombre">
                     </div>
                     <div class="form-group">
                         <label>Descripción</label>
-
+                        <input type="text" name="nombre" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="">Género</label>
-
+                        <label for="genero">Género</label>
+                        <select name="job" class="form-control" id="genero">
+                            <option th:each="job : ${listaJobs}"
+                                    th:value="${job.jobid}"
+                                    th:text="${job.jobtitle}"
+                                    th:selected="${job.jobid==employees.job.jobid}"></option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="">Plataforma</label>
-
+                        <label for="plataforma">Plataforma</label>
+                        <select name="job" class="form-control" id="plataforma">
+                            <option th:each="job : ${listaJobs}"
+                                    th:value="${job.jobid}"
+                                    th:text="${job.jobtitle}"
+                                    th:selected="${job.jobid==employees.job.jobid}"></option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="">Distribuidora</label>
-
+                        <label for="distribuidora">Distribuidora</label>
+                        <select name="job" class="form-control" id="distribuidora">
+                            <option th:each="job : ${listaJobs}"
+                                    th:value="${job.jobid}"
+                                    th:text="${job.jobtitle}"
+                                    th:selected="${job.jobid==employees.job.jobid}"></option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Imagen URL</label>
-
+                        <input type="text" name="nombre" class="form-control" >
                     </div>
                     <div class="form-group">
                         <label>Precio</label>
@@ -42,13 +57,13 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">S/</div>
                             </div>
-
+                            <input type="text" name="nombre" class="form-control" placeholder="0.0">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <a th:href="@{/juegos/lista}" class="btn btn-danger">Cancelar</a>
-                        <button type="submit" class="btn btn-primary" th:text="Boton ---">Reg/act</button>
+                        <!--<button type="submit" class="btn btn-primary" th:text="Boton ---">Reg/act</button>-->
                     </div>
                 </form>
         </div>
