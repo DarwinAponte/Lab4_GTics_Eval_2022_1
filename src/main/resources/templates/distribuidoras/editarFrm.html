@@ -8,7 +8,7 @@
                 <main>
                     <!-- Contenido -->
                     <div class="page-header text-center">
-                        <h2 th:text="|${distribuidora.iddistribuidora == 0 ? 'Nuevo' : 'Editar'} Distribuidora|"></h2>
+                        <h2 th:text="|${distribuidora.iddistribuidora == null ? 'Nueva' : 'Editar'} Distribuidora|"></h2>
                     </div>
                     <div class="container-fluid">
                         <form method="post" class="row g-3" th:object="${distribuidora}"
@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <a th:href="@{/distribuidoras/lista}" class="btn btn-danger">Cancelar</a>
                                 <button type="submit" class="btn btn-primary"
-                                        th:text="${distribuidora.iddistribuidora != 0 ? 'Actualizar' : 'Registrar'}"></button>
+                                        th:text="${distribuidora.iddistribuidora != null ? 'Actualizar' : 'Registrar'}"></button>
                             </div>
                         </form>
                     </div>
