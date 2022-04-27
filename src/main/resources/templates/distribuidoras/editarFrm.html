@@ -8,28 +8,41 @@
         <main>
             <!-- Contenido -->
         <div class="page-header text-center">
-            <h2 th:text=""></h2>
+            <h2 th:text="${'Crear Función'}"></h2>
         </div>
         <div class="container-fluid">
-                <form method="POST"  class="row g-3" >
+                <form method="POST" class="row g-3" th:object="${distribuidora}">
                     <div class="form-group">
-                        <label for="">Nombre</label>
-
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" th:field="*{nombre}" id="nombre">
+                        <div class="text-danger" th:if="${#fields.hasErrors('nombre')}"
+                             th:errors="*{nombre}"></div>
                     </div>
                     <div class="form-group">
-                        <label for="">Descripción</label>
-
+                        <label class="form-label">Descripción</label>
+                        <input type="text" class="form-control" th:field="*{descripcion}" id="descripcion">
+                        <div class="text-danger" th:if="${#fields.hasErrors('descripcion')}"
+                             th:errors="*{descripcion}"></div>
                     </div>
                     <div class="form-group">
-                        <label for="">URL Web</label>
-
+                        <label class="form-label">URL Web</label>
+                        <input type="text" class="form-control" th:field="*{web}" id="web">
+                        <div class="text-danger" th:if="${#fields.hasErrors('descripcion')}"
+                             th:errors="*{web}"></div>
                     </div>
                     <div class="form-group">
-                        <label for="">Fundación</label>
-
+                        <label class="form-label">Fundación</label>
+                        <input type="text" class="form-control" th:field="*{fundacion}" id="fundacion">
+                        <div class="text-danger" th:if="${#fields.hasErrors('descripcion')}"
+                             th:errors="*{fundacion}"></div>
                     </div>
                     <div class="form-group">
-                        <label for="">Sede</label>
+                        <label class="form-label">Sedes</label>
+                        <select class="form-select" th:field="*{pais}">
+                            <option th:each="pais : ${listaPaises}"
+                                    th:text="|${pais.getNombre()}|"
+                                    th:value="${pais.getIdpais()}"></option>
+                        </select>
 
                     </div>
 

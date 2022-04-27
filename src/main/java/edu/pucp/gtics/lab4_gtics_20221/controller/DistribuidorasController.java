@@ -22,6 +22,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/distribuidoras")
+
 public class DistribuidorasController {
 
     @Autowired
@@ -36,24 +37,28 @@ public class DistribuidorasController {
         return "distribuidoras/lista";
     }
 
+    @GetMapping("newFrm")
+    public String editarDistribuidoras (@ModelAttribute("distribuidora") Distribuidoras distribuidoras, Model model){
 
-//    public String editarDistribuidoras() {
-//
-//    }
-//
-//    public String nuevaDistribuidora() {
-//
-//    }
-
-
-
-    @GetMapping("/borrar")
-    public String borrarDistribuidora(@RequestParam("id") int id) {
-        Optional<Distribuidoras> opt = distribuidorasRepository.findById(id);
-        if (opt.isPresent()) {
-            distribuidorasRepository.deleteById(id);
-        }
-        return "redirect:/distribuidoras/lista";
+        model.addAttribute("listaPaises", paisesRepository.findAll());
+        return "distribuidoras/editarFrm";
     }
+
+//    public String nuevaDistribuidora( ){
+//
+//    }
+//
+//    public String guardarDistribuidora( ){
+//
+//    }
+//
+//    @GetMapping("/borrar")
+//    public String borrarDistribuidora(@RequestParam("id") int id){
+//        Optional<Distribuidoras> opt = distribuidorasRepository.findById(id);
+//        if (opt.isPresent()) {
+//            distribuidorasRepository.deleteById(id);
+//        }
+//        return "redirect:/distribuidoras/lista";
+//    }
 
 }
