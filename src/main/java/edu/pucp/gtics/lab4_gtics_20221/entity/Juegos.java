@@ -10,13 +10,14 @@ public class Juegos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int idjuego;
-
+    @Size(min = 3, max = 45,message = "Debe contener entre 3 y 45 caracteres")
     private String nombre;
 
+    @Size(min = 3, max = 400,message = "Debe contener entre 3 y 400 caracteres")
     private String descripcion;
 
+    @Min(value = 10,message = "Valor mínimo 10")
     private double precio;
 
     private String image;

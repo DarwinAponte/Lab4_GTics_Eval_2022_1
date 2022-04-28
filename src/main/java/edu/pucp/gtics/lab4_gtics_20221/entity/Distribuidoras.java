@@ -11,6 +11,7 @@ import javax.validation.constraints.*;
 public class Distribuidoras {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Min(value = 0, message = "Distribuidora no puede estar vacío")
     private Integer iddistribuidora;
 
     @Size(min = 3, max = 50)

@@ -51,7 +51,7 @@ public class JuegosController {
         model.addAttribute("listaGenero", generosRepository.findAll());
         model.addAttribute("listaPlataforma", plataformasRepository.findAll());
         model.addAttribute("listaDistribuidora", distribuidorasRepository.findAll());
-        return "juegos/lista";
+        return "juegos/editarFrm";
     }
 
     @GetMapping("/editar")
@@ -70,7 +70,7 @@ public class JuegosController {
 
     }
 
-    @GetMapping("/guardar")
+    @PostMapping("/guardar")
     public String guardarJuegos(@ModelAttribute("juegos") @Valid Juegos juegos,
                                 BindingResult bindingResult,
                                 RedirectAttributes attr, Model model ){
@@ -78,7 +78,7 @@ public class JuegosController {
             model.addAttribute("listaGenero", generosRepository.findAll());
             model.addAttribute("listaPlataforma", plataformasRepository.findAll());
             model.addAttribute("listaDistribuidora", distribuidorasRepository.findAll());
-            return "distribuidoras/editarFrm";
+            return "juegos/editarFrm";
         } else {
             if (juegos.getIdjuego() == 0) {
                 attr.addFlashAttribute("msg", "Juego creado exitosamente");
