@@ -93,7 +93,7 @@ public class JuegosController {
         Optional<Juegos> opt = juegosRepository.findById(id);
         if (opt.isPresent()) {
             juegosRepository.deleteById(id);
-            attr.addFlashAttribute("msg", "Distribuidora borrada exitosamente");
+            attr.addFlashAttribute("msg", "Juego borrado exitosamente");
         }
         return "redirect:/juegos/lista";
     }
