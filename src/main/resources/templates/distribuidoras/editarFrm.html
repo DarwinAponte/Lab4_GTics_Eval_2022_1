@@ -44,7 +44,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Sedes</label>
-                                <select class="form-select" th:field="*{pais}" id="pais"
+                                <select class="form-select" id="pais" th:field="*{pais}"
                                         th:classappend="${#fields.hasErrors('pais')? 'is-invalid':''}">
                                     <option value="-1" th:selected="${distribuidora.pais==0}">- Seleccione -
                                     </option>
@@ -52,9 +52,11 @@
                                             th:text="|${p.getNombre()}|"
                                             th:value="${p.getIdpais()}"
                                             th:selected="${distribuidora.pais == p.getIdpais()}"></option>
-                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('pais')}"
-                                         th:errors="*{pais}"></div>
+
+                            
                                 </select>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('pais')}"
+                                     th:errors="*{pais}"></div>
                             </div>
                             <div class="form-group">
                                 <a th:href="@{/distribuidoras/lista}" class="btn btn-danger">Cancelar</a>

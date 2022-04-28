@@ -24,14 +24,14 @@ public class Distribuidoras {
     @Size(min = 3, max = 198, message = "Debe contener entre 3 y 198 caracteres")
     private String web;
 
-    @Digits(integer = 10, fraction = 0, message = "Debe ser un número")
+    @Digits(integer = 10, fraction = 0, message = "Debe ser un número entero")
     @Max(value = 2100, message = "Debe ser menor o igual a 2100")
     @Min(value = 1800, message = "Debe ser mayor o igual a 1800")
     private int fundacion = 1870;
 
     @ManyToOne
     @JoinColumn(name = "idsede")
-    @NotNull
+    @NotNull(message = "Sede no debe estar vacío")
     private Paises pais;
 
     public Integer getIddistribuidora() {
