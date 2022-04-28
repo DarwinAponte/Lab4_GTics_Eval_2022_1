@@ -44,9 +44,9 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Sedes</label>
-                                <select class="form-select" th:field="*{pais}"
+                                <select class="form-select" th:field="*{pais}" id="pais"
                                         th:classappend="${#fields.hasErrors('pais')? 'is-invalid':''}">
-                                    <option value="-1" th:selected="${distribuidora.iddistribuidora==0}">- Seleccione -
+                                    <option value="-1" th:selected="${distribuidora.pais==0}">- Seleccione -
                                     </option>
                                     <option th:each="p : ${listaPaises}"
                                             th:text="|${p.getNombre()}|"

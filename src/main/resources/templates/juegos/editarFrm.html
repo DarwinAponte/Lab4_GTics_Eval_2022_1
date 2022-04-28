@@ -34,6 +34,8 @@
                                 <label for="genero">Género</label>
                                 <select name="job" class="form-select" id="genero" th:field="*{genero}"
                                         th:classappend="${#fields.hasErrors('genero')?'is-invalid':''}">
+                                    <option value="-1" th:selected="${juegos.genero==0}">- Seleccione -
+                                    </option>
                                     <option th:each="genero : ${listaGenero}"
                                             th:value="${genero.idgenero}"
                                             th:text="${genero.nombre}"
@@ -46,6 +48,8 @@
                                 <label for="plataforma">Plataforma</label>
                                 <select name="job" class="form-select" id="plataforma" th:field="*{plataforma}"
                                         th:classappend="${#fields.hasErrors('plataforma')?'is-invalid':''}">
+                                    <option value="-1" th:selected="${juegos.plataforma==0}">- Seleccione -
+                                    </option>
                                     <option th:each="plat : ${listaPlataforma}"
                                             th:value="${plat.idplataforma}"
                                             th:text="${plat.nombre}"
@@ -58,6 +62,8 @@
                                 <label for="distribuidora">Distribuidora</label>
                                 <select name="job" class="form-select" id="distribuidora" th:field="*{distribuidora}"
                                         th:classappend="${#fields.hasErrors('distribuidora')?'is-invalid':''}">
+                                    <option value="-1" th:selected="${juegos.distribuidora==0}">- Seleccione -
+                                    </option>
                                     <option th:each="dis : ${listaDistribuidora}"
                                             th:value="${dis.iddistribuidora}"
                                             th:text="${dis.nombre}"

@@ -31,7 +31,7 @@ public class Distribuidoras {
 
     @ManyToOne
     @JoinColumn(name = "idsede")
-    @NotNull(message = "Sede no debe ser vacío")
+    @NotNull
     private Paises pais;
 
     public Integer getIddistribuidora() {

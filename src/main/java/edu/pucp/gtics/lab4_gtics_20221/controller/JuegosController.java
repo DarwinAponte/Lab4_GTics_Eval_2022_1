@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -39,8 +38,6 @@ public class JuegosController {
         model.addAttribute("listaJuegos1", juegosRepository.findAll(Sort.by("precio").descending()));
         return "juegos/lista";
     }
-
-
 
     public String vistaJuegos ( ){
         return "juegos/lista";
@@ -92,10 +89,11 @@ public class JuegosController {
     }
 
     @GetMapping("/borrar")
-    public String borrarDistribuidora(@RequestParam("id") int id){
+    public String borrarDistribuidora(@RequestParam("id") int id, RedirectAttributes attr){
         Optional<Juegos> opt = juegosRepository.findById(id);
         if (opt.isPresent()) {
             juegosRepository.deleteById(id);
+            attr.addFlashAttribute("msg", "Distribuidora borrada exitosamente");
         }
         return "redirect:/juegos/lista";
     }

@@ -17,6 +17,8 @@ public class Juegos {
     @Size(min = 3, max = 400,message = "Debe contener entre 3 y 400 caracteres")
     private String descripcion;
 
+    @Digits(integer = 10, fraction = 0, message = "Debe ser un número")
+    @Max(value = 500,message = "Valor máximo 500")
     @Min(value = 10,message = "Valor mínimo 10")
     private double precio;
 
@@ -24,16 +26,17 @@ public class Juegos {
 
     @ManyToOne
     @JoinColumn(name = "idplataforma")
-
+    @NotNull(message = "Plataforma no debe estar vacía")
     private Plataformas plataforma;
 
     @ManyToOne
     @JoinColumn(name = "iddistribuidora")
-
+    @NotNull(message = "Distribuidora no debe estar vacía")
     private Distribuidoras distribuidora;
 
     @ManyToOne
     @JoinColumn(name = "idgenero",nullable = false)
+    @NotNull(message = "Género no debe estar vacío")
     private Generos genero;
 
     public int getIdjuego() {
