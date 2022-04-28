@@ -46,7 +46,7 @@
                     <tr th:each="juego, info : ${listaJuegos1}">
                         <td th:text="${info.index + 1}"></td>
 <!--                        <td> <img th:src="${juego.image}">-->
-                        <td><img th:src="${juego.image}" style="min-width: 50px; width: 100%; height: 100%; object-fit: cover"></td>
+                        <td><img th:src="${juego.image}" style="min-width: 1px; width: 100%; height: 100%; object-fit: cover"></td>
                         <td ><span th:text="${juego.nombre} "></span>
                             <span class="badge bg-warning text-dark" th:text="${juego.genero.nombre}" > </span>
                         </td>
