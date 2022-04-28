@@ -11,35 +11,57 @@
                 <h1>Lista de Juegos para la Venta</h1>
             </div>
             <div class="container-fluid">
+                <a class="btn btn-primary mt-4 mb-4" th:href="@{/juegos/nuevo}"><span
+                        class="bi bi-plus-circle"></span> Nueva Juego</a>
 
-                <a class="btn btn-primary mt-4 mb-4" th:href="@{/juegos/nuevo}"><span class="bi bi-plus-circle"></span> Nuevo Juego</a>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <i class="bi bi-check-circle-fill"></i>
-                    <span th:text=""></span>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+<!--                <div th:if="${msg != null}" class="alert alert-success alert-dismissible fade show"-->
+<!--                     role="alert">-->
+<!--                    <i class="bi bi-check-circle-fill"></i>-->
+<!--                    <span th:text="${msg}"></span>-->
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
+<!--                </div>-->
+
+<!--                <div th:if="${msgDelete != null}" class="alert alert-danger alert-dismissible fade show"-->
+<!--                     role="alert">-->
+<!--                    <i class="bi bi-check-circle-fill"></i>-->
+<!--                    <span th:text="${msgDelete}"></span>-->
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
+<!--                </div>-->
+
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>#</th>
                         <th></th>
-                        <th style="width: 18%">Nombre</th>
-                        <th style="width: 32%">Descripción</th>
-                        <th style="width: 20%">Plataforma</th>
-                        <th style="width: 10%">Distribuidora</th>
-                        <th style="width: 20%">Precio (S/)</th>
-                        <th style="width: 8%"></th>
-                        <th style="width: 8%"></th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Plataforma</th>
+                        <th>Distribuidora</th>
+                        <th>Precio(s/)</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr >
+                    <tr th:each="juego, info : ${listaJuegos1}">
+                        <td th:text="${info.index + 1}"></td>
+<!--                        <td> <img th:src="${juego.image}">-->
+                        <td><img th:src="${juego.image}" style="min-width: 100px; width: 100%; height: 100%; object-fit: cover"></td>
+                        <td th:text="${juego.nombre} + ${juego.genero.nombre}"> </td>
+                        <td th:text="${juego.descripcion}"></td>
+                        <td th:text="${juego.plataforma.nombre}"></td>
+                        <td th:text="${juego.distribuidora.nombre}"></td>
+                        <td th:text="${juego.precio}"></td>
 
-
-                        <td><a class="btn btn-primary" th:title="Editar" th:href="@{'/juegos/editar?id=' + ${juego.idjuego}}"><span class="bi bi-pencil-square"></span></a></td>
-                        <td><a class="btn btn-danger" th:title="Borrar" th:href="@{'/juegos/borrar?id=' + ${juego.idjuego}}"><span class="bi bi-trash"></span></a></td>
+                        <td><a class="btn btn-primary" th:title="Editar"
+                               th:href="@{'/distribuidoras/editar?id=' + ${juego.nombre}}"><span
+                                class="bi bi-pencil-square"></span></a></td>
+                        <td><a class="btn btn-danger" th:title="Borrar"
+                               th:href="@{'/distribuidoras/borrar?id=' + ${juego.nombre}}"><span
+                                class="bi bi-trash"></span></a></td>
                     </tr>
                     </tbody>
+
                 </table>
 
             </div>

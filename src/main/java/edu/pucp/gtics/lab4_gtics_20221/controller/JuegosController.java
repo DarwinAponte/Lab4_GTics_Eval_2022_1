@@ -34,10 +34,14 @@ public class JuegosController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping(value = {"", "/","/juegos/lista"})
-    public String listaJuegos (){
-        return "juegos/editarFrm";
+    @GetMapping(value = {"", "/","/lista"})
+    public String listaJuegos (Model model){
+        model.addAttribute("listaJuegos", juegosRepository.obtenerJuegos());
+        model.addAttribute("listaJuegos1", juegosRepository.findAll(Sort.by("precio").descending()));
+        return "juegos/lista";
     }
+
+
 
     public String vistaJuegos ( ){
         return "juegos/editarFrm";
