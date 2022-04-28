@@ -1,77 +1,79 @@
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: head(title='Gameshop3 - Bienvenido')"></head>
-<body>
-<div class='container container-app'>
-    <div th:replace="fragments/header.html :: header(option='Juegos')"></div>
+    <head th:replace="fragments/base.html :: head(title='Gameshop3 - Bienvenido')"></head>
+    <title th:text="${juegos.idjuego == 0? 'Nuevo Juego':'Editar Juego'}"></title>
+    <body>
+        <div class='container container-app'>
+            <div th:replace="fragments/header.html :: header(option='Juegos')"></div>
 
-    <div id="content">
-        <main>
-            <!-- Contenido -->
-        <div class="page-header text-center">
-            <h2 th:text="${employees.id == null? 'Nuevo Juego' : 'Editar Juego'}">Nuevo Empleado</h2>
-        </div>
-        <div class="container-fluid">
-                <form method="POST" class="row g-3" th:action="@{'/juegos/guardar'}">
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" name="nombre" class="form-control" id="nombre">
+            <div id="content">
+                <main>
+                    <!-- Contenido -->
+                    <div class="page-header text-center">
+                        <h2 th:text="${juegos.idjuego == 0? 'Nuevo Juego' : 'Editar Juego'}">Nuevo Empleado</h2>
                     </div>
-                    <div class="form-group">
-                        <label>Descripción</label>
-                        <input type="text" name="nombre" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="genero">Género</label>
-                        <select name="job" class="form-control" id="genero">
-                            <option th:each="job : ${listaJobs}"
-                                    th:value="${job.jobid}"
-                                    th:text="${job.jobtitle}"
-                                    th:selected="${job.jobid==employees.job.jobid}"></option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="plataforma">Plataforma</label>
-                        <select name="job" class="form-control" id="plataforma">
-                            <option th:each="job : ${listaJobs}"
-                                    th:value="${job.jobid}"
-                                    th:text="${job.jobtitle}"
-                                    th:selected="${job.jobid==employees.job.jobid}"></option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="distribuidora">Distribuidora</label>
-                        <select name="job" class="form-control" id="distribuidora">
-                            <option th:each="job : ${listaJobs}"
-                                    th:value="${job.jobid}"
-                                    th:text="${job.jobtitle}"
-                                    th:selected="${job.jobid==employees.job.jobid}"></option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Imagen URL</label>
-                        <input type="text" name="nombre" class="form-control" >
-                    </div>
-                    <div class="form-group">
-                        <label>Precio</label>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">S/</div>
+                    <div class="container-fluid">
+                        <form method="POST" class="row g-3" th:action="@{'/juegos/guardar'}" th:object="${juegos}">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" name="nombre" class="form-control" id="nombre" th:field="*{nombre}">
                             </div>
-                            <input type="text" name="nombre" class="form-control" placeholder="0.0">
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <input type="text" name="nombre" class="form-control" th:field="*{descripcion}">
+                            </div>
+                            <div class="form-group">
+                                <label for="genero">Género</label>
+                                <select name="job" class="form-control" id="genero" th:field="*{genero}">
+                                    <option th:each="genero : ${listaGenero}"
+                                            th:value="${genero.idgenero}"
+                                            th:text="${genero.nombre}"
+                                            th:selected="${genero.idgenero==juegos.genero.idgenero}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="plataforma">Plataforma</label>
+                                <select name="job" class="form-control" id="plataforma" th:field="*{plataforma}">
+                                    <option th:each="plat : ${listaPlataforma}"
+                                            th:value="${plat.idplataforma}"
+                                            th:text="${plat.nombre}"
+                                            th:selected="${plat.idplataforma==juegos.plataforma.idplataforma}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="distribuidora">Distribuidora</label>
+                                <select name="job" class="form-control" id="distribuidora" th:field="*{distribuidora}">
+                                    <option th:each="dis : ${listaDistribuidora}"
+                                            th:value="${dis.iddistribuidora}"
+                                            th:text="${dis.nombre}"
+                                            th:selected="${dis.iddistribuidora==juegos.distribuidora.iddistribuidora}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Imagen URL</label>
+                                <input type="text" name="nombre" class="form-control" th:field="*{image}">
+                            </div>
+                            <div class="form-group">
+                                <label>Precio</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">S/</div>
+                                    </div>
+                                    <input type="text" name="nombre" class="form-control" placeholder="0.0" th:field="*{precio}">
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <a th:href="@{/juegos/lista}" class="btn btn-danger">Cancelar</a>
-                        <!--<button type="submit" class="btn btn-primary" th:text="Boton ---">Reg/act</button>-->
+                            <div class="form-group">
+                                <a th:href="@{/juegos/lista}" class="btn btn-danger">Cancelar</a>
+                                <button type="submit" class="btn btn-primary" th:text="${juegos.idjuego==0?'Registrar':'Actualizar'}">Reg/act</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
-        </div>
-        </main>
-    </div>
+                </main>
+            </div>
             <!-- /Contenido -->
-    <div th:replace="fragments/footer.html :: footer(year='2022')"></div>
-</div>
-<div th:replace="fragments/base.html :: jsScripts"></div>
-</body>
+            <div th:replace="fragments/footer.html :: footer(year='2022')"></div>
+        </div>
+        <div th:replace="fragments/base.html :: jsScripts"></div>
+    </body>
 </html>

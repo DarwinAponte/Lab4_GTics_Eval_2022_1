@@ -9,6 +9,8 @@ import javax.validation.constraints.*;
 public class Juegos {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int idjuego;
 
     private String nombre;
@@ -30,8 +32,7 @@ public class Juegos {
     private Distribuidoras distribuidora;
 
     @ManyToOne
-    @JoinColumn(name = "idgenero")
-
+    @JoinColumn(name = "idgenero",nullable = false)
     private Generos genero;
 
     public int getIdjuego() {

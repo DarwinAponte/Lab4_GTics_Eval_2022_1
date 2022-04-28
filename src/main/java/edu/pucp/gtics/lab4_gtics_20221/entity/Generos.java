@@ -12,9 +12,11 @@ public class Generos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Min(value = 0, message = "Género no puede estar vacío")
-    private
-    int idgenero;
+
+    private int idgenero;
+
     private String nombre;
+
     private String descripcion;
 
     public int getIdgenero() {
